@@ -1,46 +1,46 @@
-import { MongoMemoryServer } from 'mongodb-memory-server'
-import mongoose from 'mongoose'
-import request from 'supertest'
+import { MongoMemoryServer } from 'mongodb-memory-server';
+import mongoose from 'mongoose';
+import request from 'supertest';
 
-import { app } from '../app'
+import { app } from '../app';
 
 declare global {
   namespace NodeJS {
     interface Global {
-      getSignUpCookie(): Promise<string[]>
+      getSignUpCookie(): Promise<string[]>;
     }
   }
 }
 
-let mongo: any
+let mongo: any;
 beforeAll(async () => {
-  process.env.JWT_KEY = 'fake_key'
+  process.env.JWT_KEY = 'fake_key';
 
-  mongo = new MongoMemoryServer()
-  const mongoUri = await mongo.getUri()
+  mongo = new MongoMemoryServer();
+  const mongoUri = await mongo.getUri();
 
   await mongoose.connect(mongoUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-  })
-})
+  });
+});
 
 beforeEach(async () => {
-  const collections = await mongoose.connection.db.collections()
+  const collections = await mongoose.connection.db.collections();
 
   for (let collection of collections) {
-    await collection.deleteMany({})
+    await collection.deleteMany({});
   }
-})
+});
 
 afterAll(async () => {
-  await mongo.stop()
-  await mongoose.connection.close()
-})
+  await mongo.stop();
+  await mongoose.connection.close();
+});
 
 global.getSignUpCookie = async () => {
-  const email = 'test@test.com'
-  const password = 'fake_password'
+  const email = 'test@test.com';
+  const password = 'fake_password';
 
   const response = await request(app)
     .post('/api/users/signup')
@@ -48,7 +48,7 @@ global.getSignUpCookie = async () => {
       email,
       password
     })
-    .expect(201)
+    .expect(201);
 
-  return response.get('Set-Cookie')
-}
+  return response.get('Set-Cookie');
+};
