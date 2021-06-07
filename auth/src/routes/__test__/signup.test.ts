@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { app } from '../../app';
 
-it('should returns a 201 on successful signup', async () => {
+it('Should returns a 201 on successful signup', async () => {
   await request(app)
     .post('/api/users/signup')
     .send({
@@ -11,7 +11,7 @@ it('should returns a 201 on successful signup', async () => {
     .expect(201);
 });
 
-it('should returns a 400 with an invalid email', async () => {
+it('Should returns a 400 with an invalid email', async () => {
   await request(app)
     .post('/api/users/signup')
     .send({
@@ -21,7 +21,7 @@ it('should returns a 400 with an invalid email', async () => {
     .expect(400);
 });
 
-it('should returns a 400 with an invalid password', async () => {
+it('Should returns a 400 with an invalid password', async () => {
   await request(app)
     .post('/api/users/signup')
     .send({
@@ -31,7 +31,7 @@ it('should returns a 400 with an invalid password', async () => {
     .expect(400);
 });
 
-it('should returns a 400 with missing email and password', async () => {
+it('Should returns a 400 with missing email and password', async () => {
   await request(app)
     .post('/api/users/signup')
     .send({
@@ -46,7 +46,7 @@ it('should returns a 400 with missing email and password', async () => {
     .expect(400);
 });
 
-it('should disallows duplicate emails', async () => {
+it('Should disallows duplicate emails', async () => {
   await request(app)
     .post('/api/users/signup')
     .send({
@@ -64,7 +64,7 @@ it('should disallows duplicate emails', async () => {
     .expect(400);
 });
 
-it('should sets a cookie after successful signup', async () => {
+it('Should sets a cookie after successful signup', async () => {
   const response = await request(app)
     .post('/api/users/signup')
     .send({

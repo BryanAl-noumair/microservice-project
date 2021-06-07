@@ -2,7 +2,7 @@ import request from 'supertest';
 
 import { app } from '../../app';
 
-it('should fails when a email that does not exist is supplied', async () => {
+it('Should fails when a email that does not exist is supplied', async () => {
   await request(app)
     .post('/api/users/signin')
     .send({
@@ -12,7 +12,7 @@ it('should fails when a email that does not exist is supplied', async () => {
     .expect(400);
 });
 
-it('should fails when an incorrect password is supplied', async () => {
+it('Should fails when an incorrect password is supplied', async () => {
   await request(app)
     .post('/api/users/signup')
     .send({
@@ -30,7 +30,7 @@ it('should fails when an incorrect password is supplied', async () => {
     .expect(400);
 });
 
-it('should responds with a cookie when given valid credentials', async () => {
+it('Should responds with a cookie when given valid credentials', async () => {
   await request(app)
     .post('/api/users/signup')
     .send({
