@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import { Router } from 'next/router'
+import { useState } from 'react';
+import { Router } from 'next/router';
 
-import { useRequest } from '../../hooks/use-request'
+import { useRequest } from '../../hooks/use-request';
 
 export const SignIn = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { doRequest, errors } = useRequest({
     url: '/api/users/signin',
     method: 'post',
@@ -14,15 +14,15 @@ export const SignIn = () => {
       password
     },
     onSuccess: () => {
-      Router.push('/')
+      Router.push('/');
     }
-  })
+  });
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
-    doRequest()
-  }
+    doRequest();
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -38,5 +38,5 @@ export const SignIn = () => {
       {errors}
       <button>Sign In</button>
     </form>
-  )
-}
+  );
+};

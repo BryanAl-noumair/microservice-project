@@ -1,6 +1,6 @@
-import request from 'supertest'
+import request from 'supertest';
 
-import { app } from '../../app'
+import { app } from '../../app';
 
 it('should fails when a email that does not exist is supplied', async () => {
   await request(app)
@@ -9,8 +9,8 @@ it('should fails when a email that does not exist is supplied', async () => {
       email: 'test@test.com',
       password: 'fake_password'
     })
-    .expect(400)
-})
+    .expect(400);
+});
 
 it('should fails when an incorrect password is supplied', async () => {
   await request(app)
@@ -19,7 +19,7 @@ it('should fails when an incorrect password is supplied', async () => {
       email: 'test@test.com',
       password: 'fake_password'
     })
-    .expect(201)
+    .expect(201);
 
   await request(app)
     .post('/api/users/signin')
@@ -27,8 +27,8 @@ it('should fails when an incorrect password is supplied', async () => {
       email: 'test@test.com',
       password: 'fake_password_2'
     })
-    .expect(400)
-})
+    .expect(400);
+});
 
 it('should responds with a cookie when given valid credentials', async () => {
   await request(app)
@@ -37,7 +37,7 @@ it('should responds with a cookie when given valid credentials', async () => {
       email: 'test@test.com',
       password: 'fake_password'
     })
-    .expect(201)
+    .expect(201);
 
   const response = await request(app)
     .post('/api/users/signin')
@@ -45,7 +45,7 @@ it('should responds with a cookie when given valid credentials', async () => {
       email: 'test@test.com',
       password: 'fake_password'
     })
-    .expect(200)
+    .expect(200);
 
-  expect(response.get('Set-Cookie')).toBeDefined()
-})
+  expect(response.get('Set-Cookie')).toBeDefined();
+});

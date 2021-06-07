@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from 'next/link';
 
 export const Header = ({ currentUser }) => {
   const links = [
@@ -14,8 +14,8 @@ export const Header = ({ currentUser }) => {
             <a>{label}</a>
           </Link>
         </li>
-      )
-    })
+      );
+    });
 
   return (
     <nav>
@@ -26,5 +26,5 @@ export const Header = ({ currentUser }) => {
         <ul>{links}</ul>
       </div>
     </nav>
-  )
-}
+  );
+};

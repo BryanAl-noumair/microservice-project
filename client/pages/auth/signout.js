@@ -1,6 +1,6 @@
-import { useRequest } from '../../hooks/use-request'
-import { Router } from 'next/router'
-import { useEffect } from 'react'
+import { useRequest } from '../../hooks/use-request';
+import { Router } from 'next/router';
+import { useEffect } from 'react';
 
 export const SignOut = () => {
   const { doRequest } = useRequest({
@@ -8,11 +8,11 @@ export const SignOut = () => {
     method: 'post',
     body: {},
     onSuccess: () => Router.push('/')
-  })
+  });
 
   useEffect(() => {
-    doRequest()
-  }, [])
+    doRequest();
+  }, []);
 
-  return <div> Signing you out ...</div>
-}
+  return <div> Signing you out ...</div>;
+};
